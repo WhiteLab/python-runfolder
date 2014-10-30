@@ -62,6 +62,7 @@ def main(paths=list(),db='db.sq3',**kwargs):
         INSERT INTO runfolder VALUES (?,?)
       ''',(socket.gethostname(),run))
       except Exception as err: pass
+      else: logging.info('Added run folder %s as completed.' % run)
 
     else: conn.commit()
 
