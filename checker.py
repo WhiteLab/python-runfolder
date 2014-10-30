@@ -37,7 +37,8 @@ def main(paths=list(),db='db.sq3',**kwargs):
     logging.debug('checking %s' % path)
 
     # Get list of sub-directories to check.
-    dirs = map(lambda x: x[0], os.walk(path))[1:] # skip the base dir
+    dirs = os.walk(path).next()
+    dirs = map(lambda x: os.path.join(dirs[0],x), dirs[1])
     vals = map(lambda x: runfolder_complete(x), dirs)
     map(lambda x: logging.debug('\t%s - %s' % x), zip(dirs,vals))
 
